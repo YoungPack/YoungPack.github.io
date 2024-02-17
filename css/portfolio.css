@@ -1,0 +1,201 @@
+/* Define CSS Variables */
+:root {
+    --bg-color: #faf5ef;
+    --text-color: #000;
+    --highlight-color: #5e5d5de1;
+    --nav-bg-color: #faf5ef;
+    --footer-bg-color: #333;
+    --footer-text-color: #fff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+    --transition-duration: 0.3s;
+    --transition-ease: ease;
+    --blur-intensity: 4px;
+    --pop-animation-duration: 0.8s;
+    --fade-animation-duration: 1s;
+}
+
+/* Reset and Basic Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Navigation Bar */
+.navbar {
+    background: var(--nav-bg-color);
+    color: var(--text-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 60%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
+
+.nav-list li a {
+    padding: 5px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-duration) var(--transition-ease);
+}
+
+.nav-list li a:hover,
+.nav-list li a.active {
+    color: var(--highlight-color);
+}
+
+/* Hero Section */
+.hero-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.hero-slides {
+    display: flex;
+    transition: transform var(--transition-duration) var(--transition-ease);
+    height: 100%;
+}
+
+.hero-slide {
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    opacity: 0;
+    animation: popOutAnimation var(--pop-animation-duration) var(--transition-ease) forwards;
+}
+
+@keyframes popOutAnimation {
+    from { opacity: 0; transform: scale(0.8) translateY(50%); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hero-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--footer-text-color);
+    text-align: center;
+    z-index: 2;
+}
+
+/* Portfolio Gallery (Netflix-style) */
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger min-width for bigger items */
+    grid-gap: var(--grid-gap);
+    padding: var(--grid-gap);
+    margin-top: var(--grid-gap);
+}
+
+.portfolio-gallery .artwork {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform var(--transition-duration) var(--transition-ease), box-shadow var(--transition-duration) var(--transition-ease);
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.portfolio-gallery .artwork:before {
+    content: '';
+    display: block;
+    padding-top: 66.66%; /* Different aspect ratio for larger view */
+}
+
+.portfolio-gallery .artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-duration) var(--transition-ease);
+}
+
+.portfolio-gallery .artwork:hover {
+    transform: scale(var(--hover-scale));
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip/Title Styling */
+.artwork .title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity var(--transition-duration) var(--transition-ease);
+}
+
+.artwork:hover .title {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Footer Styles */
+footer {
+    background: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .portfolio-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller min size for smaller screens */
+    }
+    
+    /* Adjust the span for smaller screens if needed */
+    .portfolio-gallery .artwork.large,
+    .portfolio-gallery .artwork.wide,
+    .portfolio-gallery .artwork.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
