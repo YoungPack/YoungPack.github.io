@@ -15,26 +15,27 @@
     --fade-animation-duration: 1s;
 }
 
+/* General Styles */
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background-color: #faf5ef;
+    background-color: var(--bg-color);
 }
 
 /* Navigation Bar */
 .navbar {
-    background:  #faf5ef;
-    color: #000000;
+    background: var(--nav-bg-color);
+    color: var(--text-color);
     padding: 1rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     max-width: 60%;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .container {
@@ -59,23 +60,20 @@ body, html {
     padding: 5px 20px; 
     text-decoration: none;
     color: inherit;
-    transition: color 0.3s ease;
+    transition: color var(--transition-duration) var(--transition-ease);
 }
 
 .nav-list li a:hover {
-    color: #5e5d5de1;
-
+    color: var(--highlight-color);
 }
 
-
-/* Container for the hero section */
+/* Hero Section */
 .hero-container {
     display: flex;
     justify-content: center; 
     width: 100%; 
 }
 
-/* Hero Section */
 .hero {
     position: relative;
     width: 100%;
@@ -86,7 +84,7 @@ body, html {
 
 .hero-slides {
     display: flex;
-    transition: transform 0.5s ease; /* Adjust slide transition if needed */
+    transition: transform var(--transition-duration) var(--transition-ease);
     height: 100%; /* Ensure the slides container matches the hero section height */
 }
 
@@ -98,7 +96,7 @@ body, html {
     align-items: center;
     height: 100%; /* Match height to the hero section */
     opacity: 0; /* Initially hide the images */
-    animation: popOutAnimation 0.8s ease forwards; /* Apply the pop out animation */
+    animation: popOutAnimation var(--pop-animation-duration) var(--transition-ease) forwards; /* Apply the pop out animation */
 }
 
 @keyframes popOutAnimation {
@@ -135,14 +133,13 @@ body, html {
     margin-top: 50px; /* Increased space after the hero section for better visual separation */
 }
 
-/* Artwork Slide Image Styling */
 .artwork-slide img {
     max-width: 100%; /* Ensure the image fits within the slide container */
     max-height: 100%; /* Ensure the image fits within the slide container */
     display: block; /* Center the image horizontally */
     margin: 0 auto; /* Center the image horizontally */
-    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
-    border-radius: 20px;
+    transition: transform var(--transition-duration) var(--transition-ease); /* Smooth transition for the hover effect */
+    border-radius: var(--border-radius);
 }
 
 .artwork-slide.active {
@@ -159,13 +156,12 @@ body, html {
     display: block;
 }
 
-
 .artwork-carousel img {
     max-width: 90%; /* Maintain maximum width */
     max-height: 75vh; /* Maintain maximum height relative to the viewport */
     object-fit: cover; /* Maintain aspect ratio without cropping */
     margin-bottom: 100px; /* Increase bottom margin for more space between images */
-    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease; /* Smooth transition for transformations and opacity changes */
+    transition: transform var(--transition-duration) var(--transition-ease), opacity var(--transition-duration) var(--transition-ease), filter var(--transition-duration) var(--transition-ease); /* Smooth transition for transformations and opacity changes */
     display: block; /* Center images */
 }
 
@@ -185,11 +181,11 @@ body, html {
 }
 .enlarge {
     transform: scale(1.1); /* Example enlargement */
-    transition: transform 0.5s ease;
+    transition: transform var(--transition-duration) var(--transition-ease);
 }
 .shrink {
     transform: scale(0.9); /* Example shrinking */
-    transition: transform 0.5s ease;
+    transition: transform var(--transition-duration) var(--transition-ease);
 }
 
 .artwork-slide .label {
@@ -210,75 +206,4 @@ body, html {
 
 .artwork-slide:hover .label {
     opacity: 1;
-}
-
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-@keyframes slideUpFadeOut {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-50px); /* Adjust this value to control the distance of the upward movement */
-        opacity: 0;
-    }
-}
-
-.hero.animate-up {
-    animation: slideUpFadeOut 1s forwards; /* Adjust duration as needed */
-}
-
-/* CSS adjustment for blur effect */
-.blur {
-    filter: blur(12230px); /* Adjust the blur intensity as needed */
-}
-
-.fade-in {
-    animation: fadeInEase 1s forwards;
-    filter: none; /* Ensure the blur is removed when fading in */
-}
-
-@keyframes fadeInEase {
-    0% { opacity: 0; filter: blur(4px); }
-    100% { opacity: 1; filter: none; }
-}
-
-@keyframes popOutAnimation {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(50%);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-@keyframes popOutAnimation {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(50%);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}@keyframes popOutAnimation {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(50%);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
 }
