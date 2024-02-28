@@ -1,4 +1,4 @@
-/* Define CSS Variables */
+
 :root {
     --bg-color: #faf5ef;
     --text-color: #000;
@@ -15,7 +15,7 @@
     --fade-animation-duration: 1s;
 }
 
-/* General Styles */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -24,7 +24,7 @@ body, html {
     background-color: var(--bg-color);
 }
 
-/* Navigation Bar */
+
 .navbar {
     background: var(--nav-bg-color);
     color: var(--text-color);
@@ -67,7 +67,6 @@ body, html {
     color: var(--highlight-color);
 }
 
-/* Hero Section */
 .hero-container {
     display: flex;
     justify-content: center; 
@@ -77,7 +76,7 @@ body, html {
 .hero {
     position: relative;
     width: 100%;
-    height: 50vh; /* Fixed height for the hero section */
+    height: 50vh; 
     overflow: hidden;
     border: 20px;
 }
@@ -85,18 +84,18 @@ body, html {
 .hero-slides {
     display: flex;
     transition: transform var(--transition-duration) var(--transition-ease);
-    height: 100%; /* Ensure the slides container matches the hero section height */
+    height: 100%; 
 }
 
 .hero-slide {
     width: 100%;
     flex: 0 0 auto;
-    display: flex; /* Center the image in the slide */
+    display: flex; 
     justify-content: center;
     align-items: center;
-    height: 100%; /* Match height to the hero section */
-    opacity: 0; /* Initially hide the images */
-    animation: popOutAnimation var(--pop-animation-duration) var(--transition-ease) forwards; /* Apply the pop out animation */
+    height: 100%; 
+    opacity: 0; 
+    animation: popOutAnimation var(--pop-animation-duration) var(--transition-ease) forwards; 
 }
 
 @keyframes popOutAnimation {
@@ -111,8 +110,8 @@ body, html {
 }
 
 .hero-slide img {
-    max-width: 100%; /* Ensure the image fits within the slide container */
-    max-height: 100%; /* Ensure the image fits within the slide container */
+    max-width: 100%; 
+    max-height: 100%;
 }
 
 .hero-text {
@@ -125,30 +124,52 @@ body, html {
     z-index: 2;
 }
 
-/* Artwork Carousel & Images Styling */
+
 .artwork-carousel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px; /* Increased space after the hero section for better visual separation */
+    margin-top: 50px; 
+}
+
+.artwork-slide {
+    position: relative;
+    display: inline-block;
+}
+
+.artwork-slide .label {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.artwork-slide:hover .label {
+    opacity: 1;
 }
 
 .artwork-slide img {
-    max-width: 100%; /* Ensure the image fits within the slide container */
-    max-height: 100%; /* Ensure the image fits within the slide container */
-    display: block; /* Center the image horizontally */
-    margin: 0 auto; /* Center the image horizontally */
-    transition: transform var(--transition-duration) var(--transition-ease); /* Smooth transition for the hover effect */
+    max-width: 100%; 
+    max-height: 100%; 
+    display: block; 
+    margin: 0 auto; 
+    transition: transform var(--transition-duration) var(--transition-ease); 
     border-radius: var(--border-radius);
 }
 
 .artwork-slide.active {
-    opacity: 1; /* Show images */
-    transform: translateY(0); /* Slide images into view */
+    opacity: 1; 
+    transform: translateY(0); 
 }
 
 .artwork-slide:hover img {
-    transform: scale(1.1); /* Enlarge the image on hover */
+    transform: scale(1.1); 
     filter: brightness(40%);
 }
 
@@ -157,17 +178,17 @@ body, html {
 }
 
 .artwork-carousel img {
-    max-width: 90%; /* Maintain maximum width */
-    max-height: 75vh; /* Maintain maximum height relative to the viewport */
-    object-fit: cover; /* Maintain aspect ratio without cropping */
-    margin-bottom: 100px; /* Increase bottom margin for more space between images */
+    max-width: 90%; 
+    max-height: 75vh; 
+    object-fit: cover; 
+    margin-bottom: 100px; 
     transition: transform var(--transition-duration) var(--transition-ease), opacity var(--transition-duration) var(--transition-ease), filter var(--transition-duration) var(--transition-ease); /* Smooth transition for transformations and opacity changes */
-    display: block; /* Center images */
+    display: block;
 }
 
-/* Adjusting the first image's margin to ensure even spacing */
+
 .artwork-carousel img:first-of-type {
-    margin-top: 80px; /* Additional top margin for the first image */
+    margin-top: 80px; 
 }
 
 .hidden {
@@ -180,30 +201,12 @@ body, html {
     animation: fadeOut 1s forwards;
 }
 .enlarge {
-    transform: scale(1.1); /* Example enlargement */
+    transform: scale(1.1); 
     transition: transform var(--transition-duration) var(--transition-ease);
 }
 .shrink {
-    transform: scale(0.9); /* Example shrinking */
+    transform: scale(0.9); 
     transition: transform var(--transition-duration) var(--transition-ease);
 }
 
-.artwork-slide .label {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8); 
-    color: #fff; 
-    padding: 8px 16px; 
-    border-radius: 8px; 
-    font-family: Arial, sans-serif; 
-    font-size: 14px; 
-    text-align: center; 
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.artwork-slide:hover .label {
-    opacity: 1;
-}
+    

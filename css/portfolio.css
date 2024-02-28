@@ -1,4 +1,4 @@
-/* Define CSS Variables */
+
 :root {
     --bg-color: #faf5ef;
     --text-color: #000;
@@ -15,7 +15,7 @@
     --fade-animation-duration: 1s;
 }
 
-/* Reset and Basic Styles */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -90,6 +90,29 @@ body, html {
     animation: popOutAnimation var(--pop-animation-duration) var(--transition-ease) forwards;
 }
 
+@media (max-width: 800px) {
+    .nav-list {
+        flex-direction: column;
+        display: none;
+    }
+    .nav-list.active {
+        display: flex;
+    }
+    .hamburger-menu {
+        display: block;
+    }
+    .nav-list li.active {
+        color: var(--highlight-color);
+        font-weight: bold;
+    }
+
+    .hamburger-menu {
+        display: none;
+        cursor: pointer;
+    }
+}
+
+
 @keyframes popOutAnimation {
     from { opacity: 0; transform: scale(0.8) translateY(50%); }
     to { opacity: 1; transform: scale(1) translateY(0); }
@@ -111,10 +134,10 @@ body, html {
     z-index: 2;
 }
 
-/* Portfolio Gallery (Netflix-style) */
+
 .portfolio-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger min-width for bigger items */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     grid-gap: var(--grid-gap);
     padding: var(--grid-gap);
     margin-top: var(--grid-gap);
@@ -133,7 +156,7 @@ body, html {
 .portfolio-gallery .artwork:before {
     content: '';
     display: block;
-    padding-top: 66.66%; /* Different aspect ratio for larger view */
+    padding-top: 66.66%; 
 }
 
 .portfolio-gallery .artwork img {
@@ -148,7 +171,7 @@ body, html {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Tooltip/Title Styling */
+
 .artwork .title {
     position: absolute;
     bottom: 0;
@@ -169,7 +192,7 @@ body, html {
     opacity: 1;
 }
 
-/* Footer Styles */
+
 footer {
     background: var(--footer-bg-color);
     color: var(--footer-text-color);
@@ -188,10 +211,10 @@ footer a:hover {
 
 @media (max-width: 768px) {
     .portfolio-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller min size for smaller screens */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     }
     
-    /* Adjust the span for smaller screens if needed */
+    
     .portfolio-gallery .artwork.large,
     .portfolio-gallery .artwork.wide,
     .portfolio-gallery .artwork.tall {

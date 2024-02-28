@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselImages = document.querySelectorAll('.artwork-carousel img');
     let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    
+    // Existing functionality for handling blur and scroll effects
     carouselImages.forEach((img, index) => {
         if (index !== 0) {
             img.classList.add('blur', 'hidden');
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const isScrollingUp = scrollTop < lastScrollTop;
 
-        
         if (scrollTop < 100) {
             if (isScrollingUp) {
                 navbar.classList.add('fade-in');
@@ -32,10 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             hero.classList.add('fade-out', 'animate-up');
         }
 
-        
         carouselImages.forEach(img => img.classList.add('blur'));
 
-        
         carouselImages.forEach(img => {
             const imgRect = img.getBoundingClientRect();
             const isInViewport = imgRect.top >= 0 && imgRect.bottom <= window.innerHeight;
@@ -55,5 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll(); // Initialize the function on load
+
+    // Smooth Scrolling for In-Page Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Optional: Hamburger Menu Toggle for Smaller Screens
+    // Assuming you have a .hamburger-menu element in your HTML
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', () => {
+            const navList = document.querySelector('.nav-list');
+            navList.classList.toggle('active');
+        });
+    }
 });
