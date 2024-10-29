@@ -1,17 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const hero = document.querySelector('.hero');
-    const carouselImages = document.querySelectorAll('.artwork-carousel img');
     let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    // Existing functionality for handling blur and scroll effects
-    carouselImages.forEach((img, index) => {
-        if (index !== 0) {
-            img.classList.add('blur', 'hidden');
-        } else {
-            img.classList.remove('blur');
-        }
-    });
 
     function handleScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -31,23 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hero.classList.add('fade-out', 'animate-up');
         }
 
-        carouselImages.forEach(img => img.classList.add('blur'));
-
-        carouselImages.forEach(img => {
-            const imgRect = img.getBoundingClientRect();
-            const isInViewport = imgRect.top >= 0 && imgRect.bottom <= window.innerHeight;
-
-            if (isInViewport) {
-                img.classList.remove('blur', 'hidden');
-                img.classList.add('fade-in', 'pop');
-            } else {
-                if (!isScrollingUp) {
-                    img.classList.add('hidden');
-                }
-                img.classList.remove('fade-in', 'pop');
-            }
-        });
-
         lastScrollTop = scrollTop;
     }
 
@@ -65,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Optional: Hamburger Menu Toggle for Smaller Screens
-    // Assuming you have a .hamburger-menu element in your HTML
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     if (hamburgerMenu) {
         hamburgerMenu.addEventListener('click', () => {
@@ -73,4 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
             navList.classList.toggle('active');
         });
     }
+
+    // Handling clicks on the "Read More" buttons within artwork elements
+    const readMoreButtons = document.querySelectorAll('.artwork-info button');
+
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const blogPostUrl = this.getAttribute('data-blog-url'); // Ensure you add a 'data-blog-url' attribute to your button element in HTML
+            if(blogPostUrl) {
+                window.location.href = blogPostUrl; // Redirects the user to the blog post URL
+            }
+        });
+    });
 });
